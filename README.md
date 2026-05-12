@@ -128,7 +128,7 @@ Open [http://localhost:8080](http://localhost:8080). Create a profile. Click **L
 
 ---
 
-## Latest: v0.3.26 (Chromium 146.0.7680.177.4)
+## Latest: v0.3.28 (Chromium 146.0.7680.177.4)
 
 - **`launch_context_async()`** — async counterpart to `launch_context()`. Forwards kwargs to `browser.new_context()` for `storage_state`, `permissions`, `extra_http_headers` without a persistent profile folder.
 - **JS `contextOptions` escape hatch** — forward arbitrary options (including `storageState`) to Playwright's `newContext()` from `launchContext()` / `launchPersistentContext()`.
