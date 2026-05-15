@@ -1070,7 +1070,8 @@ def patch_page(page: Any, cfg: HumanConfig, cursor: _CursorState) -> None:
             ensure_actionable(page, selector, CHECKS_FOCUS, timeout=_remaining_ms(), force=force)
         _human_hover(selector, _skip_checks=True, timeout=_remaining_ms(), force=force, human_config=kwargs.get("human_config"))
         sleep_ms(rand(100, 300))
-        return originals.select_option(selector, value, **kwargs)
+        pw_kwargs = {k: v for k, v in kwargs.items() if k not in ("human_config", "force")}
+        return originals.select_option(selector, value, **pw_kwargs)
 
     def _human_press(selector: str, key: str, **kwargs: Any) -> None:
         force = kwargs.get("force", False)
@@ -1984,7 +1985,8 @@ def patch_page_async(page: Any, cfg: HumanConfig, cursor: _CursorState) -> None:
             await async_ensure_actionable(page, selector, CHECKS_FOCUS, timeout=_remaining_ms(), force=force)
         await _human_hover(selector, _skip_checks=True, timeout=_remaining_ms(), force=force, human_config=kwargs.get("human_config"))
         await async_sleep_ms(rand(100, 300))
-        return await originals.select_option(selector, value, **kwargs)
+        pw_kwargs = {k: v for k, v in kwargs.items() if k not in ("human_config", "force")}
+        return await originals.select_option(selector, value, **pw_kwargs)
 
     async def _human_mouse_move(x: float, y: float, **kwargs: Any) -> None:
         await _ensure_cursor_init()
